@@ -38,8 +38,14 @@ def build_part1_RNN(window_size):
 ### TODO: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
-
-    return text
+    
+    cleaned_text=[]
+    for word in text.split():
+        cleaned_characters_in_word=[c for c in word if c in punctuation or c.isalnum()]
+        cleaned_word = "".join(cleaned_characters_in_word)
+        cleaned_text.append(cleaned_word)
+        
+    return " ".join(cleaned_text)
 
 ### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_text(text, window_size, step_size):
