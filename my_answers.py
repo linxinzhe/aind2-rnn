@@ -53,7 +53,17 @@ def window_transform_text(text, window_size, step_size):
     inputs = []
     outputs = []
 
-    return inputs,outputs
+    full_steps_text = text[:len(text) // (step_size*window_size) * (step_size*window_size)]
+
+    i=0
+    while((i+window_size) < len(full_steps_text)):
+        x = full_steps_text[i:i + window_size]
+        y = full_steps_text[i + window_size]
+        i+=step_size
+        inputs.append(x)
+        outputs.append(y)
+
+    return inputs, outputs
 
 # TODO build the required RNN model: 
 # a single LSTM hidden layer with softmax activation, categorical_crossentropy loss 
