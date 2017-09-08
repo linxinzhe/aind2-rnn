@@ -42,7 +42,7 @@ def cleaned_text(text):
     
     cleaned_text=[]
     for word in text.split():
-        cleaned_characters_in_word=[c for c in word if c in punctuation or c.isalnum()]
+        cleaned_characters_in_word=[c for c in word if c in punctuation or c.isalpha()]
         cleaned_word = "".join(cleaned_characters_in_word)
         cleaned_text.append(cleaned_word)
         
@@ -54,8 +54,9 @@ def window_transform_text(text, window_size, step_size):
     inputs = []
     outputs = []
 
-    full_steps_text = text[:len(text) // (step_size*window_size) * (step_size*window_size)]
-
+    #full_steps_text = text[:len(text) // (step_size*window_size) * (step_size*window_size)]
+    full_steps_text=text
+    
     i=0
     while((i+window_size) < len(full_steps_text)):
         x = full_steps_text[i:i + window_size]
